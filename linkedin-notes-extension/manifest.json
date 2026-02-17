@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Notes (Drive Sync)",
+  "version": "1.1.0",
+  "description": "Private LinkedIn profile notes with local save and Google Drive sync.",
+  "permissions": ["identity", "storage"],
+  "host_permissions": [
+    "https://www.linkedin.com/in/*",
+    "https://www.googleapis.com/*"
+  ],
+  "minimum_chrome_version": "114",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/in/*"],
+      "js": ["ui.js", "content-script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "oauth2": {
+    "client_id": "PASTE_YOUR_EXTENSION_OAUTH_CLIENT_ID_HERE.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/drive.file"]
+  }
+}
